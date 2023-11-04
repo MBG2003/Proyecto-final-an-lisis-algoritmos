@@ -1,6 +1,6 @@
 package com.example.proyecto_final.modelo.bellmanFord;
 
-public class Main {
+public class BellmanFord {
     // Código del programa principal
 	public static void main(String[] args) {
 		int V = 5; // Número de vértices en el grafo

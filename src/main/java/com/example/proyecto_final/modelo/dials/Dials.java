@@ -2,7 +2,7 @@ package com.example.proyecto_final.modelo.dials;
 
 import java.util.*;
 
-public class Main {
+public class Dials {
         public static void main(String[] args)
     {
         // create the graph given in above figure

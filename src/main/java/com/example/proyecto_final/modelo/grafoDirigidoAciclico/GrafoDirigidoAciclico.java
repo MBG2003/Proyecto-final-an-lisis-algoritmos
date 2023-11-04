@@ -4,7 +4,7 @@ package com.example.proyecto_final.modelo.grafoDirigidoAciclico;
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class GrafoDirigidoAciclico {
 
     // Método para crear una nueva instancia de grafo a través de un objeto
     // de la clase Grafo
@@ -16,7 +16,7 @@ public class Main {
         // Crea un grafo dado en el diagrama anterior. Aquí, los números de vértices son
         // 0, 1, 2, 3, 4, 5 con las siguientes asignaciones:
         // 0=r, 1=s, 2=t, 3=x, 4=y, 5=z
-        Main t = new Main();
+        GrafoDirigidoAciclico t = new GrafoDirigidoAciclico();
         Grafo g = t.nuevoGrafo(6);
         g.agregarArista(0, 1, 5);
         g.agregarArista(0, 2, 3);

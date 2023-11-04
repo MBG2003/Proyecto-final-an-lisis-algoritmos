@@ -5,12 +5,12 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 
-public class Main {
+public class ZeroOneBFS {
 	
 	private static final int numVertices = 9;
 	private ArrayList<Nodo>[] aristas = new ArrayList[numVertices];
 
-	public Main() {
+	public ZeroOneBFS() {
 		for (int i = 0; i < aristas.length; i++) {
 			aristas[i] = new ArrayList<Nodo>();
 		}
@@ -61,7 +61,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		Main grafo = new Main();
+		ZeroOneBFS grafo = new ZeroOneBFS();
 		grafo.agregarArista(0, 1, 0);
 		grafo.agregarArista(0, 7, 1);
 		grafo.agregarArista(1, 7, 1);

@@ -2,9 +2,9 @@ package com.example.proyecto_final.modelo.aEstrella;
 
 import java.util.*;
 
-public class Main {
-    static final int ROW = 9;
-    static final int COL = 10;
+public class AEstrella {
+    public static int ROW = 0;
+    public static int COL = 0;
 
     public static void main(String[] args) {
 
@@ -80,35 +80,35 @@ public class Main {
         }
 
         path.push(new int[]{row, col});
-        while (!path.isEmpty()) {
-            int[] p = path.pop();
-            if (p[0] == 2 || p[0] == 1) {
-                System.out.println("-> (" + p[0] + ", " + (p[1] - 1) + ")");
-            } else {
-                System.out.println("-> (" + p[0] + ", " + p[1] + ")");
-            }
-        }
+        // while (!path.isEmpty()) {
+        //     int[] p = path.pop();
+        //     if (p[0] == 2 || p[0] == 1) {
+        //         System.out.println("-> (" + p[0] + ", " + (p[1] - 1) + ")");
+        //     } else {
+        //         System.out.println("-> (" + p[0] + ", " + p[1] + ")");
+        //     }
+        // }
     }
 
-    public static void aStarSearch(int[][] grid, int[] src, int[] dest) {//src {0,0}   dest {8,0}
+    public static boolean aStarSearch(int[][] grid, int[] src, int[] dest) {
         if (!isValid(src[0], src[1])) {
             System.out.println("Source is invalid");
-            return;
+            return false;
         }
 
         if (!isValid(dest[0], dest[1])) {
             System.out.println("Destination is invalid");
-            return;
+            return false;
         }
 
         if (!isUnBlocked(grid, src[0], src[1]) || !isUnBlocked(grid, dest[0], dest[1])) {
             System.out.println("Source or the destination is blocked");
-            return;
+            return false;
         }
 
         if (isDestination(src[0], src[1], dest)) {
             System.out.println("We are already at the destination");
-            return;
+            return false;
         }
 
         boolean[][] closedList = new boolean[ROW][COL];
@@ -154,7 +154,7 @@ public class Main {
                     System.out.println("The destination cell is found");
                     tracePath(cellDetails, dest);
                     foundDest = true;
-                    return;
+                    return true;
                 } else if (!closedList[i - 1][j] && isUnBlocked(grid, i - 1, j)) {
                     gNew = cellDetails[i][j].g + 1;
                     hNew = calculateHValue(i - 1, j, dest);
@@ -178,7 +178,7 @@ public class Main {
                     System.out.println("The destination cell is found");
                     tracePath(cellDetails, dest);
                     foundDest = true;
-                    return;
+                    return true;
                 } else if (!closedList[i + 1][j] && isUnBlocked(grid, i + 1, j)) {
                     gNew = cellDetails[i][j].g + 1;
                     hNew = calculateHValue(i + 1, j, dest);
@@ -202,7 +202,7 @@ public class Main {
                     System.out.println("The destination cell is found");
                     tracePath(cellDetails, dest);
                     foundDest = true;
-                    return;
+                    return true;
                 } else if (!closedList[i][j - 1] && isUnBlocked(grid, i, j - 1)) {
                     gNew = cellDetails[i][j].g + 1;
                     hNew = calculateHValue(i, j - 1, dest);
@@ -226,7 +226,7 @@ public class Main {
                     System.out.println("The destination cell is found");
                     tracePath(cellDetails, dest);
                     foundDest = true;
-                    return;
+                    return true;
                 } else if (!closedList[i][j + 1] && isUnBlocked(grid, i, j + 1)) {
                     gNew = cellDetails[i][j].g + 1;
                     hNew = calculateHValue(i, j + 1, dest);
@@ -246,6 +246,8 @@ public class Main {
 
         if (!foundDest) {
             System.out.println("Failed to find the destination cell");
+            return false;
         }
+        return true;
     }
 }

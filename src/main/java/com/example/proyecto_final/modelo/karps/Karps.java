@@ -5,7 +5,7 @@ package com.example.proyecto_final.modelo.karps;
 import java.io.*;
 import java.util.*;
 
-public class Main {
+public class Karps {
     static int V = 4;
     
 

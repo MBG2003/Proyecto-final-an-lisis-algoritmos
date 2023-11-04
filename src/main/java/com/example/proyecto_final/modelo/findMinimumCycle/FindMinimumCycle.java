@@ -4,7 +4,7 @@ package com.example.proyecto_final.modelo.findMinimumCycle;
 import java.util.*;
 
 // Código del controlador
-public class Main {
+public class FindMinimumCycle {
     public static void main(String[] args) {
         int V = 9;
         Grafo g = new Grafo(V);

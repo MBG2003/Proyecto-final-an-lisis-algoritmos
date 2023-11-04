@@ -4,7 +4,7 @@ import java.io.*;
 import java.lang.*;
 import java.util.*;
 
-public class Main {
+public class Dijkstra {
     // Una función de utilidad para encontrar el vértice con el valor de distancia
     // mínimo,
     // del conjunto de vértices que aún no están incluidos en el árbol de camino más
@@ -97,7 +97,7 @@ public class Main {
                 { 0, 0, 0, 0, 0, 2, 0, 1, 6 },
                 { 8, 11, 0, 0, 0, 0, 1, 0, 7 },
                 { 0, 0, 2, 0, 0, 0, 6, 7, 0 } };
-        Main t = new Main();
+        Dijkstra t = new Dijkstra();
 
         // Llamada a la función
         t.dijkstra(graph, 0);
