@@ -23,8 +23,14 @@ import java.util.ResourceBundle;
 
 import com.example.proyecto_final.modelo.*;
 import com.example.proyecto_final.modelo.aEstrella.AEstrella;
+import com.example.proyecto_final.modelo.bellmanFord.BellmanFord;
+import com.example.proyecto_final.modelo.dials.Dials;
 
 public class MainController implements Initializable {
+
+    public static void main(String args[]) {
+        generarDialsArchivos();
+    }
 
     private static ObservableList<Resultado> resultados = FXCollections.observableArrayList();
 
@@ -121,7 +127,28 @@ public class MainController implements Initializable {
     @FXML
     void aEstrellaBtnAction(ActionEvent event) {
 
-        generarGrafoAEstrella();
+        List<Double> listaTiempo = generarGrafoAEstrella();
+        List<String> nombres = Arrays.asList("Caso 1", "Caso 2", "Caso 3", "Caso 4", "Caso 5", "Caso 6", "Caso 7",
+                "Caso 8");
+        mostrarGrafico(nombres, listaTiempo);
+
+    }
+
+    private List<Double> generarGrafoAEstrellaPrueba() {
+        double tem1 = 1, tem2 = 2, tem3 = 3, tem4 = 4, tem5 = 5, tem6 = 6, tem7 = 7, tem8 = 8;
+
+        resultados.add(new Resultado("(599.686, 718.472)", tem1,
+                "(2.401.158, 2.880.473)", tem2,
+                "(5.399.360, 6.476.546)", tem3,
+                "(9.601.277, 11.519.903)", tem4,
+                "(14.997.216, 17.991.125)", tem5,
+                "(21.595.753, 25.908.924)", tem6,
+                "(29.399.578, 35.271.931)", tem7,
+                "(38.403.457, 46.085.926)", tem8));
+
+        DatosTabla.setItems((ObservableList<Resultado>) resultados);
+        DatosTabla.refresh();
+        return Arrays.asList(tem1, tem2, tem3, tem4, tem5, tem6, tem7, tem8);
     }
 
     private List<Double> generarGrafoAEstrella() {
@@ -347,12 +374,228 @@ public class MainController implements Initializable {
 
     @FXML
     void bellmanFordBtnAction(ActionEvent event) {
+        List<Double> listaTiempo = generarBellmanFord();
+        List<String> nombres = Arrays.asList("Caso 1", "Caso 2", "Caso 3", "Caso 4", "Caso 5", "Caso 6", "Caso 7",
+                "Caso 8");
+        mostrarGrafico(nombres, listaTiempo);
 
+    }
+
+    private List<Double> generarBellmanFord() {
+        Documento documento = new Documento();
+
+        int V;
+        int E;
+
+        double tem1, tem2, tem3, tem4, tem5, tem6, tem7, tem8;
+
+        System.out.println("Bellman Ford Caso 1");
+        String BELLMANFORD1 = "src/Recursos/bellmanFord1.txt";
+        V = 10000;
+        E = 10000;
+        ArrayList<Integer> lista = documento.leerFormatoArchivoBellman(BELLMANFORD1);
+        tem1 = BellmanFord.realizarGrafoBellmanFordTiempo(V, E, lista);
+
+        System.out.println("Bellman Ford Caso 2");
+        BELLMANFORD1 = "src/Recursos/bellmanFord2.txt";
+        V = 20000;
+        E = 20000;
+        lista = documento.leerFormatoArchivoBellman(BELLMANFORD1);
+        tem2 = BellmanFord.realizarGrafoBellmanFordTiempo(V, E, lista);
+
+        System.out.println("Bellman Ford Caso 3");
+        BELLMANFORD1 = "src/Recursos/bellmanFord3.txt";
+        V = 30000;
+        E = 30000;
+        lista = documento.leerFormatoArchivoBellman(BELLMANFORD1);
+        tem3 = BellmanFord.realizarGrafoBellmanFordTiempo(V, E, lista);
+
+        System.out.println("Bellman Ford Caso 4");
+        BELLMANFORD1 = "src/Recursos/bellmanFord4.txt";
+        V = 40000;
+        E = 40000;
+        lista = documento.leerFormatoArchivoBellman(BELLMANFORD1);
+        tem4 = BellmanFord.realizarGrafoBellmanFordTiempo(V, E, lista);
+
+        System.out.println("Bellman Ford Caso 5");
+        BELLMANFORD1 = "src/Recursos/bellmanFord5.txt";
+        V = 50000;
+        E = 50000;
+        lista = documento.leerFormatoArchivoBellman(BELLMANFORD1);
+        tem5 = BellmanFord.realizarGrafoBellmanFordTiempo(V, E, lista);
+
+        System.out.println("Bellman Ford Caso 6");
+        BELLMANFORD1 = "src/Recursos/bellmanFord6.txt";
+        V = 60000;
+        E = 60000;
+        lista = documento.leerFormatoArchivoBellman(BELLMANFORD1);
+        tem6 = BellmanFord.realizarGrafoBellmanFordTiempo(V, E, lista);
+
+        System.out.println("Bellman Ford Caso 7");
+        BELLMANFORD1 = "src/Recursos/bellmanFord7.txt";
+        V = 70000;
+        E = 70000;
+        lista = documento.leerFormatoArchivoBellman(BELLMANFORD1);
+        tem7 = BellmanFord.realizarGrafoBellmanFordTiempo(V, E, lista);
+
+        System.out.println("Bellman Ford Caso 8");
+        BELLMANFORD1 = "src/Recursos/bellmanFord8.txt";
+        V = 80000;
+        E = 80000;
+        lista = documento.leerFormatoArchivoBellman(BELLMANFORD1);
+        tem8 = BellmanFord.realizarGrafoBellmanFordTiempo(V, E, lista);
+
+        resultados.add(new Resultado("(10.000, 10.000)", tem1,
+                "(20.000, 20.000)", tem2,
+                "(30.000, 30.000)", tem3,
+                "(40.000, 40.000)", tem4,
+                "(50.000, 50.000)", tem5,
+                "(60.000, 60.000)", tem6,
+                "(70.000, 70.000)", tem7,
+                "(80.000, 80.000)", tem8));
+
+        DatosTabla.setItems((ObservableList<Resultado>) resultados);
+        DatosTabla.refresh();
+        return Arrays.asList(tem1, tem2, tem3, tem4, tem5, tem6, tem7, tem8);
+        // return Arrays.asList(tem1);
+
+    }
+
+    private static void generarDialsArchivos() {
+        Documento documento = new Documento();
+
+        String DIALS1 = "src/Recursos/dials1.txt";
+
+        int V = 80000; // Número de vértices en el grafo
+        int E = 80000; // Número de aristas en el grafo
+        ArrayList<Integer> lista = new ArrayList<>();
+        ArrayList<Integer> listaOrigenes = new ArrayList<>();
+        ArrayList<Integer> listaDestinos = new ArrayList<>();
+
+        int origen;
+        int destino;
+
+        boolean conectado = false;
+        boolean repetido = false;
+        Random rand = new Random();
+
+        for (int i = 0; i < E; i++) {
+            if (i == 0) {
+                origen = 0;
+                do {
+                    destino = rand.nextInt(V);
+                } while (destino == origen);
+            } else {
+                do {
+                    origen = rand.nextInt(V);
+                    destino = rand.nextInt(V);
+                    final int auxOrigen = origen;
+                    final int auxDestino = destino;
+
+                    conectado = listaDestinos.stream().anyMatch(dest -> dest == auxOrigen);
+                    repetido = (listaOrigenes.stream().anyMatch(org -> org == auxOrigen)
+                            && listaDestinos.stream().anyMatch(dest -> dest == auxDestino))
+                            || (listaOrigenes.stream().anyMatch(org -> org == auxDestino)
+                                    && listaDestinos.stream().anyMatch(dest -> dest == auxOrigen));
+                } while (destino == origen || !conectado || repetido);
+            }
+
+            listaOrigenes.add(origen);
+            listaDestinos.add(destino);
+
+            int peso = rand.nextInt(15);
+
+            //System.out.println(origen + "," + destino + "," + peso);
+
+            lista.add(origen);
+            lista.add(destino);
+            lista.add(peso);
+        }
+
+        boolean acabo = false;
+        while (!acabo) {
+            double timeInicial = System.nanoTime();
+            acabo = Dials.realizarGrafoDials(V, E, lista);
+            double timeFinal = System.nanoTime();
+
+            System.out.println((timeFinal - timeInicial) / 1000000000);
+            if (acabo == true) {
+                documento.crearTxtBellman(lista, E);
+            }
+
+        }
+    }
+
+    private static void generarBellmanFordArchivos() {
+        Documento documento = new Documento();
+
+        String BELLMANFORD = "src/Recursos/bellmanFord1.txt";
+
+        int V = 80000; // Número de vértices en el grafo
+        int E = 80000; // Número de aristas en el grafo
+        ArrayList<Integer> lista = new ArrayList<>();
+        ArrayList<Integer> listaDestinos = new ArrayList<>();
+
+        int origen;
+        int destino;
+
+        boolean conectado = false;
+        Random rand = new Random();
+
+        for (int i = 0; i < E; i++) {
+            if (i == 0) {
+                origen = 0;
+                do {
+                    destino = rand.nextInt(V);
+                } while (destino == origen);
+            } else {
+                do {
+                    origen = rand.nextInt(V);
+                    destino = rand.nextInt(V);
+                    final int aux = origen;
+
+                    conectado = listaDestinos.stream().anyMatch(dest -> dest == aux);
+
+                } while (destino == origen || !conectado);
+            }
+
+            listaDestinos.add(destino);
+
+            int peso = Math.random() < 0.08 ? rand.nextInt(10) - 2 : rand.nextInt(10); // Peso aleatorio entre -4 y 5
+
+            // System.out.println(origen+","+destino+","+peso);
+
+            lista.add(origen);
+            lista.add(destino);
+            lista.add(peso);
+        }
+
+        boolean acabo = false;
+        while (!acabo) {
+            double timeInicial = System.nanoTime();
+            acabo = BellmanFord.realizarGrafoBellmanFord(V, E, lista);
+            double timeFinal = System.nanoTime();
+
+            System.out.println((timeFinal - timeInicial) / 1000000000);
+            if (acabo == true) {
+                documento.crearTxtBellman(lista, E);
+            }
+
+        }
     }
 
     @FXML
     void dialsBtnAction(ActionEvent event) {
 
+        List<Double> listaTiempo = generardials();
+        List<String> nombres = Arrays.asList("Caso 1", "Caso 2", "Caso 3", "Caso 4", "Caso 5", "Caso 6", "Caso 7",
+                "Caso 8");
+        mostrarGrafico(nombres, listaTiempo);
+
+    }
+
+    private List<Double> generardials() {
+        return null;
     }
 
     @FXML
@@ -368,10 +611,11 @@ public class MainController implements Initializable {
                 "0 - 1 BFS");
 
         List<Double> tiemposAEstrella = generarGrafoAEstrella();
+        List<Double> tiemposBellaman = generarBellmanFord();
 
         List<Double> tiemposCaso1 = new ArrayList<>();
         tiemposCaso1.add(tiemposAEstrella.get(0));
-        tiemposCaso1.add(tiemposAEstrella.get(1));
+        tiemposCaso1.add(tiemposBellaman.get(0));
 
         mostrarGrafico(nombres, tiemposCaso1);
 
@@ -624,6 +868,15 @@ public class MainController implements Initializable {
             this.tiempo6 = tiempo6;
         }
 
+    }
+
+    class Arista {
+        int origen, destino, peso;
+
+        Arista(int origen, int destino) {
+            this.origen = origen;
+            this.destino = destino;
+        }
     }
 
 }

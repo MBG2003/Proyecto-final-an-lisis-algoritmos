@@ -28,4 +28,19 @@ public class Dials {
         // maximum weighted edge - 14
         g.shortestPath(0, 14);
     }
+
+    public static boolean realizarGrafoDials(int V, int E, ArrayList<Integer> lista) {
+		Graph g = new Graph(V);
+
+		int cont= 0;
+        int maxWeight = -1;
+		for(int i = 0; i < E; i++){
+            g.AddEdge(lista.get(cont), lista.get(cont+1), lista.get(cont+2));
+            if(lista.get(cont+2) > maxWeight) {
+                maxWeight = lista.get(cont+2);
+            }
+			cont = cont +3;
+		}
+        return g.shortestPath(0, maxWeight);
+	}
 }

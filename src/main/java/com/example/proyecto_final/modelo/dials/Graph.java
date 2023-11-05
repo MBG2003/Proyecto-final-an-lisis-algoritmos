@@ -28,7 +28,7 @@ public class Graph {
  
     // Prints shortest paths from src to all other vertices.
     // W is the maximum weight of an edge
-    public void shortestPath(int src, int W)
+    public boolean shortestPath(int src, int W)
     {
         /* With each distance, iterator to that vertex in
             its bucket is stored so that vertex can be
@@ -88,9 +88,10 @@ public class Graph {
         }
  
         // Print shortest distances stored in dist[]
-        System.out.println("Vertex Distance from Source");
-        for (int i = 0; i < V; ++i)
-            System.out.println(i + "\t\t" + dist[i]);
+        // System.out.println("Vertex Distance from Source");
+        // for (int i = 0; i < V; ++i)
+        //     System.out.println(i + "\t\t" + dist[i]);
+        return true;
     }
  
 

@@ -1,54 +1,57 @@
 package com.example.proyecto_final.modelo.bellmanFord;
 
-public class BellmanFord {
-    // Código del programa principal
-	public static void main(String[] args) {
-		int V = 5; // Número de vértices en el grafo
-		int E = 8; // Número de aristas en el grafo
+import java.util.ArrayList;
 
+public class BellmanFord {
+	// Código del programa principal
+	public static void main (String[] args) {
+		int V = 5; // Número de vértices en el grafo
+		int E = 2; // Número de aristas en el grafo
+        ArrayList<Integer> miArrayList = new ArrayList<>();
+
+		// Agregar elementos al ArrayList
+        miArrayList.add(2);
+        miArrayList.add(1);
+        miArrayList.add(1);
+
+		// Agregar elementos al ArrayList
+        miArrayList.add(0);
+        miArrayList.add(1);
+        miArrayList.add(3);
+
+		realizarGrafoBellmanFord(V, E,miArrayList);
+
+	}
+
+	public static boolean realizarGrafoBellmanFord(int V, int E, ArrayList<Integer> lista) {
 		Grafo grafo = new Grafo(V, E);
 
-		// Añadir arista 0-1 (o A-B en la figura de arriba)
-		grafo.arista[0].origen = 0;
-		grafo.arista[0].destino = 1;
-		grafo.arista[0].peso = -1;
+		int cont= 0;
+		for(int i = 0; i < E; i++){
+			grafo.arista[i].origen = lista.get(cont);
+			grafo.arista[i].destino = lista.get(cont+1);
+			grafo.arista[i].peso = lista.get(cont+2);
+			cont = cont +3;
+		}
+		
+		return grafo.BellmanFord(grafo, 0);
+	}
 
-		// Añadir arista 0-2 (o A-C en la figura de arriba)
-		grafo.arista[1].origen = 0;
-		grafo.arista[1].destino = 2;
-		grafo.arista[1].peso = 4;
+	public static double realizarGrafoBellmanFordTiempo(int V, int E, ArrayList<Integer> lista) {
+		Grafo grafo = new Grafo(V, E);
 
-		// Añadir arista 1-2 (o B-C en la figura de arriba)
-		grafo.arista[2].origen = 1;
-		grafo.arista[2].destino = 2;
-		grafo.arista[2].peso = 3;
+		int cont= 0;
+		for(int i = 0; i < E; i++){
+			grafo.arista[i].origen = lista.get(cont);
+			grafo.arista[i].destino = lista.get(cont+1);
+			grafo.arista[i].peso = lista.get(cont+2);
+			cont = cont +3;
+		}
 
-		// Añadir arista 1-3 (o B-D en la figura de arriba)
-		grafo.arista[3].origen = 1;
-		grafo.arista[3].destino = 3;
-		grafo.arista[3].peso = 2;
-
-		// Añadir arista 1-4 (o B-E en la figura de arriba)
-		grafo.arista[4].origen = 1;
-		grafo.arista[4].destino = 4;
-		grafo.arista[4].peso = 2;
-
-		// Añadir arista 3-2 (o D-C en la figura de arriba)
-		grafo.arista[5].origen = 3;
-		grafo.arista[5].destino = 2;
-		grafo.arista[5].peso = 5;
-
-		// Añadir arista 3-1 (o D-B en la figura de arriba)
-		grafo.arista[6].origen = 3;
-		grafo.arista[6].destino = 1;
-		grafo.arista[6].peso = 1;
-
-		// Añadir arista 4-3 (o E-D en la figura de arriba)
-		grafo.arista[7].origen = 4;
-		grafo.arista[7].destino = 3;
-		grafo.arista[7].peso = -3;
-
-		// Llamada a la función
+		double timeInicial = System.nanoTime();
 		grafo.BellmanFord(grafo, 0);
+		double timeFinal = System.nanoTime();
+
+        return (timeFinal - timeInicial) / 1000000000;
 	}
 }

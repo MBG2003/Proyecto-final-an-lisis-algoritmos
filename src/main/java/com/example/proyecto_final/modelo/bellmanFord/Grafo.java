@@ -23,7 +23,7 @@ class Grafo {
 	// La función principal que encuentra las distancias más cortas desde
 	// src a todos los demás vértices utilizando el algoritmo de Bellman-Ford.
 	// La función también detecta ciclos de peso negativo.
-	void BellmanFord(Grafo grafo, int src) {
+	boolean BellmanFord(Grafo grafo, int src) {
 		int V = grafo.V, E = grafo.E;
 		int dist[] = new int[V];
 
@@ -57,10 +57,12 @@ class Grafo {
 					&& dist[u] + peso < dist[v]) {
 				System.out.println(
 						"El grafo contiene un ciclo de peso negativo");
-				return;
+				return false;
 			}
 		}
-		imprimirArreglo(dist, V);
+		//imprimirArreglo(dist, V);
+		System.out.println("Funcionó");
+		return true;
 	}
 
 	// Una función de utilidad utilizada para imprimir la solución
